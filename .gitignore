@@ -5,3 +5,8 @@
 npm-debug.log
 /lib/bs/
 /node_modules/
+debug.log
+*.cmi
+*.cmj
+*.cmt
+*.bs.js
