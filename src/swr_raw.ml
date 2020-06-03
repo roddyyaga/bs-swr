@@ -13,6 +13,9 @@ type revalidateOptionInterface = { retryCount: int; dedupe: bool }
 
 type revalidateType = revalidateOptionInterface -> bool Js.Promise.t
 
+external fast_deep_equal : 'a -> 'a -> bool = "default"
+  [@@bs.val] [@@bs.module "fast-deep-equal/es6"]
+
 type ('key, 'data) configInterface = {
   (* Global options *)
   errorRetryInterval: int option;
@@ -33,7 +36,7 @@ type ('key, 'data) configInterface = {
   onError: (Js.Promise.error -> 'key -> ('key, 'data) configInterface) option;
   onErrorRetry:
     (Js.Promise.error -> 'key -> ('key, 'data) configInterface) option;
-  compare: ('data option -> 'data option -> bool) option;
+  compare: 'data option -> 'data option -> bool;
 }
 
 external useSWR_string :
