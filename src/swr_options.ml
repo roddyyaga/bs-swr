@@ -35,3 +35,40 @@ let make ?(suspense = false) ?(revalidateOnFocus = true)
   }
 
 let default = make ()
+
+let to_configInterface ?initialData ?onLoadingSlow ?onSuccess ?onError
+    ?onErrorRetry ?compare
+    {
+      errorRetryInterval;
+      errorRetryCount;
+      loadingTimeout;
+      focusThrottleInterval;
+      dedupingInterval;
+      refreshInterval;
+      refreshWhenHidden;
+      refreshWhenOffline;
+      revalidateOnFocus;
+      revalidateOnReconnect;
+      shouldRetryOnError;
+      suspense;
+    } =
+  {
+    Swr_raw.errorRetryInterval;
+    errorRetryCount;
+    loadingTimeout;
+    focusThrottleInterval;
+    dedupingInterval;
+    refreshInterval;
+    refreshWhenHidden;
+    refreshWhenOffline;
+    revalidateOnFocus;
+    revalidateOnReconnect;
+    shouldRetryOnError;
+    suspense;
+    initialData;
+    onLoadingSlow;
+    onSuccess;
+    onError;
+    onErrorRetry;
+    compare;
+  }

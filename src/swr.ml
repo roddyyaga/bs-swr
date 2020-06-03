@@ -1,3 +1,4 @@
+module Options = Swr_options
 module Raw = Swr_raw
 
 type 'data bound_mutate =
@@ -21,6 +22,8 @@ let wrap_raw_response_intf = function[@warning "-45"]
 let useSWR ?config x f =
   match config with
   | None -> Raw.useSWR1 [| x |] f |> wrap_raw_response_intf
-  | Some config -> Raw.useSWR1_config [| x |] f config |> wrap_raw_response_intf
+  | Some config ->
+      let raw_config = Options.to_configInterface config in
+      Raw.useSWR1_config [| x |] f raw_config |> wrap_raw_response_intf
 
 let useSWR_string x f = Raw.useSWR1 x f |> wrap_raw_response_intf
