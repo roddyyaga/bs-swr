@@ -4,6 +4,7 @@
 .bsb.lock
 npm-debug.log
 /lib/bs/
+/lib/ocaml/
 /node_modules/
 debug.log
 *.cmi
