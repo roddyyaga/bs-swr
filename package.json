@@ -1,11 +1,12 @@
 {
   "name": "@roddynpm/bs-swr",
-  "version": "0.1.0",
+  "version": "0.1.1",
    "repository": {
       "type": "git",
       "url": "git+https://github.com/roddyyaga/bs-swr.git"
    },
   "scripts": {
+    "prepare": "npm run clean && bsb -make-world",
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world"

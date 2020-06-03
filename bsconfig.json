@@ -1,5 +1,5 @@
 {
-  "name": "bs-swr",
+  "name": "@roddynpm/bs-swr",
   "version": "0.1.0",
   "sources": {
     "dir" : "src",
