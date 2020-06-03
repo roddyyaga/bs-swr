@@ -1,6 +1,10 @@
 {
   "name": "@roddynpm/bs-swr",
   "version": "0.1.0",
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/roddyyaga/bs-swr.git"
+   },
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
@@ -11,8 +15,11 @@
     "ReasonML",
     "OCaml"
   ],
-  "author": "",
   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/roddyyaga/bs-swr/issues"
+   },
+   "homepage": "https://github.com/roddyyaga/bs-swr#readme",
   "devDependencies": {
     "bs-platform": "^7.0.0"
   },
