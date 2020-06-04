@@ -9,7 +9,7 @@ type 'data responseInterface = {
   isValidating: bool;
 }
 
-type revalidateOptionInterface = { retryCount: int; dedupe: bool }
+type revalidateOptionInterface = { retryCount: int option; dedupe: bool option }
 
 type revalidateType = revalidateOptionInterface -> bool Js.Promise.t
 
@@ -18,26 +18,35 @@ external fast_deep_equal : 'a -> 'a -> bool = "default"
 
 type ('key, 'data) configInterface = {
   (* Global options *)
-  errorRetryInterval: int option;
-  errorRetryCount: int option;
-  loadingTimeout: int option;
-  focusThrottleInterval: int option;
-  dedupingInterval: int option;
-  refreshInterval: int option;
-  refreshWhenHidden: bool option;
-  refreshWhenOffline: bool option;
-  revalidateOnFocus: bool option;
-  revalidateOnReconnect: bool option;
-  shouldRetryOnError: bool option;
-  suspense: bool option;
-  initialData: 'data option;
-  onLoadingSlow: ('key -> ('key, 'data) configInterface -> unit) option;
-  onSuccess: ('data -> 'key -> ('key, 'data) configInterface -> unit) option;
-  onError: (Js.Promise.error -> 'key -> ('key, 'data) configInterface) option;
+  errorRetryInterval: int; [@bs.optional]
+  errorRetryCount: int; [@bs.optional]
+  loadingTimeout: int; [@bs.optional]
+  focusThrottleInterval: int; [@bs.optional]
+  dedupingInterval: int; [@bs.optional]
+  refreshInterval: int; [@bs.optional]
+  refreshWhenHidden: bool; [@bs.optional]
+  refreshWhenOffline: bool; [@bs.optional]
+  revalidateOnFocus: bool; [@bs.optional]
+  revalidateOnReconnect: bool; [@bs.optional]
+  shouldRetryOnError: bool; [@bs.optional]
+  suspense: bool; [@bs.optional]
+  initialData: 'data; [@bs.optional]
+  onLoadingSlow: 'key -> ('key, 'data) configInterface -> unit; [@bs.optional]
+  onSuccess: 'data -> 'key -> ('key, 'data) configInterface -> unit;
+      [@bs.optional]
+  onError: Js.Promise.error -> 'key -> ('key, 'data) configInterface -> unit;
+      [@bs.optional]
   onErrorRetry:
-    (Js.Promise.error -> 'key -> ('key, 'data) configInterface) option;
-  compare: 'data option -> 'data option -> bool;
+    Js.Promise.error ->
+    'key ->
+    ('key, 'data) configInterface ->
+    revalidateType ->
+    revalidateOptionInterface ->
+    unit;
+      [@bs.optional]
+  compare: 'data option -> 'data option -> bool; [@bs.optional]
 }
+[@@bs.deriving abstract]
 
 external useSWR_string :
   string -> (string -> 'data Js.Promise.t) -> 'data responseInterface
@@ -75,4 +84,14 @@ external useSWR2_config :
   ('a -> 'b -> 'data Js.Promise.t) ->
   ('a * 'b, 'data) configInterface ->
   'data responseInterface = "default"
+  [@@bs.val] [@@bs.module "swr"]
+
+external mutate1 : 'key -> 'data option Js.Promise.t = "mutate"
+  [@@bs.val] [@@bs.module "swr"]
+
+external mutate2_data : 'key -> 'data -> 'data option Js.Promise.t = "mutate"
+  [@@bs.val] [@@bs.module "swr"]
+
+external mutate2_shouldRevalidate : 'key -> bool -> 'data option Js.Promise.t
+  = "mutate"
   [@@bs.val] [@@bs.module "swr"]

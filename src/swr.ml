@@ -26,4 +26,6 @@ let useSWR ?config x f =
       let raw_config = Options.to_configInterface config in
       Raw.useSWR1_config [| x |] f raw_config |> wrap_raw_response_intf
 
-let useSWR_string x f = Raw.useSWR1 x f |> wrap_raw_response_intf
+let useSWR_string x f = Raw.useSWR_string x f |> wrap_raw_response_intf
+
+let mutate key = Raw.mutate1 [| key |]

@@ -52,28 +52,8 @@ let to_configInterface ?initialData ?onLoadingSlow ?onSuccess ?onError
       shouldRetryOnError;
       suspense;
     } =
-  let compare =
-    match compare with
-    | Some compare -> compare
-    | None -> Swr_raw.fast_deep_equal
-  in
-  {
-    Swr_raw.errorRetryInterval;
-    errorRetryCount;
-    loadingTimeout;
-    focusThrottleInterval;
-    dedupingInterval;
-    refreshInterval;
-    refreshWhenHidden;
-    refreshWhenOffline;
-    revalidateOnFocus;
-    revalidateOnReconnect;
-    shouldRetryOnError;
-    suspense;
-    initialData;
-    onLoadingSlow;
-    onSuccess;
-    onError;
-    onErrorRetry;
-    compare;
-  }
+  Swr_raw.configInterface ?errorRetryInterval ?errorRetryCount ?loadingTimeout
+    ?focusThrottleInterval ?dedupingInterval ?refreshInterval ?refreshWhenHidden
+    ?refreshWhenOffline ?revalidateOnFocus ?revalidateOnReconnect
+    ?shouldRetryOnError ?suspense ?initialData ?onLoadingSlow ?onSuccess
+    ?onError ?onErrorRetry ?compare ()
