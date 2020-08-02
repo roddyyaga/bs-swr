@@ -27,6 +27,7 @@ type ('key, 'data) configInterface = {
   refreshWhenHidden: bool; [@bs.optional]
   refreshWhenOffline: bool; [@bs.optional]
   revalidateOnFocus: bool; [@bs.optional]
+  revalidateOnMount: bool; [@bs.optional]
   revalidateOnReconnect: bool; [@bs.optional]
   shouldRetryOnError: bool; [@bs.optional]
   suspense: bool; [@bs.optional]

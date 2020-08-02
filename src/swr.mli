@@ -9,6 +9,7 @@ module Options : sig
     refreshWhenHidden: bool option;
     refreshWhenOffline: bool option;
     revalidateOnFocus: bool option;
+    revalidateOnMount: bool option;
     revalidateOnReconnect: bool option;
     shouldRetryOnError: bool option;
     suspense: bool option;
@@ -18,6 +19,7 @@ module Options : sig
     ?suspense:bool ->
     ?revalidateOnFocus:bool ->
     ?revalidateOnReconnect:bool ->
+    ?revalidateOnMount:bool ->
     ?refreshInterval:int ->
     ?refreshWhenHidden:bool ->
     ?refreshWhenOffline:bool ->
