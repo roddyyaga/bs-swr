@@ -1,6 +1,6 @@
 {
   "name": "@roddynpm/bs-swr",
-  "version": "0.2.5",
+  "version": "0.2.7",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/roddyyaga/bs-swr.git"
@@ -24,7 +24,7 @@
   "devDependencies": {
     "bs-platform": "^7.0.0"
   },
-  "peerDependencies": {
-    "swr": "0.x"
+  "dependencies": {
+    "swr": ">=0.2.1"
   }
 }
