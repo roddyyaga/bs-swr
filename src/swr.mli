@@ -72,4 +72,5 @@ val useSWR :
 val useSWR_string :
   string -> (string -> 'data Js.Promise.t) -> 'data responseInterface
 
-val mutate : 'key -> 'data option Js.Promise.t
+val mutate :
+  ?f:('key -> 'data Js.Promise.t) -> 'key -> 'data option Js.Promise.t

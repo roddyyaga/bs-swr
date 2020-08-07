@@ -28,4 +28,7 @@ let useSWR ?config x f =
 
 let useSWR_string x f = Raw.useSWR_string x f |> wrap_raw_response_intf
 
-let mutate key = Raw.mutate1 [| key |]
+let mutate ?f key =
+  match f with
+  | Some f -> Raw.mutate2_one_item_array_fetcher [| key |] f
+  | None -> Raw.mutate1_one_item_array [| key |]

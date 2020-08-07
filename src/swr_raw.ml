@@ -87,10 +87,13 @@ external useSWR2_config :
   'data responseInterface = "default"
   [@@bs.val] [@@bs.module "swr"]
 
-external mutate1 : 'key -> 'data option Js.Promise.t = "mutate"
+external mutate1_one_item_array : 'param array -> 'data option Js.Promise.t
+  = "mutate"
   [@@bs.val] [@@bs.module "swr"]
 
-external mutate2_data : 'key -> 'data -> 'data option Js.Promise.t = "mutate"
+external mutate2_one_item_array_fetcher :
+  'param array -> ('param -> 'data Js.Promise.t) -> 'data option Js.Promise.t
+  = "mutate"
   [@@bs.val] [@@bs.module "swr"]
 
 external mutate2_shouldRevalidate : 'key -> bool -> 'data option Js.Promise.t
